@@ -15,7 +15,7 @@ class Player : public Collidable
 {
 private:
 	Vector2 speed;
-	const int SPEED = 4;
+	const int SPEED = PLAYER_SPEED;
 	int boundaryX = 0, boundaryY = 0;
 	Collidable* parts[PARTS_LEN];
 	unsigned int score = 0;

@@ -62,11 +62,6 @@ void GameScene::Render() {
 	Vector2 p1Speed = p1.GetSpeed();
 	Player* curActivePlayer = &p1;
 
-	// for debugging only
-	if (IsKeyDown(KEY_Q)) {
-		curActivePlayer = curActivePlayer == &p2 ? &p1 : &p2;
-	}
-
 	if (IsKeyDown(KEY_UP)) {
 		Vector2 newSpeed = {0, p1.GetConstantSpeed()*-1};
 		curActivePlayer->SetSpeed(newSpeed);
@@ -182,5 +177,12 @@ void GameScene::Render() {
 			newSpeed.y = BALL_SPEED;
 		}
 		ball.SetSpeed(newSpeed);
+	}
+
+	if (ball.IsMoving()) {
+		Vector2 curSpeed = p2.GetSpeed();
+		Vector2 newSpeed = { curSpeed.x, ball.GetSpeed().y + sin(ball.GetSpeed().y) };
+		p2.SetSpeed(newSpeed);
+		p2.Move();
 	}
 }

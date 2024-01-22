@@ -1,8 +1,9 @@
 #include <raylib.h>
 
-
 #include "SceneManager.h"
-#include "Scenes/GameScene.h"
+#include "./Helpers/constants.h"
+#include "Scenes/MainMenuScene.h"
+
 
 int main(void) {
 	const int screenWidth = WIDTH;
@@ -12,8 +13,11 @@ int main(void) {
 
 	SetTargetFPS(60);
 
-	GameScene gameScene(screenWidth, screenHeight);
-	SceneManager sceneManager(&gameScene);
+	SceneManager sceneManager;
+	MainMenuScene mainMenuScene(&sceneManager, screenWidth, screenHeight);
+	sceneManager.SetCurrentScene(&mainMenuScene);
+
+	SetExitKey(0);
 
 	while (!WindowShouldClose()) {
 		BeginDrawing();

@@ -133,6 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\UI\Button.cpp" />
+    <ClCompile Include="src\Scenes\MainMenuScene.cpp" />
     <ClCompile Include="src\Helpers\Utils.h" />
     <ClCompile Include="src\UI\Label.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -145,6 +147,8 @@
     <ClCompile Include="src\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\UI\Button.h" />
+    <ClInclude Include="src\Scenes\MainMenuScene.h" />
     <ClInclude Include="src\UI\Label.h" />
     <ClInclude Include="src\Helpers\Constants.h" />
     <ClInclude Include="src\Player.h" />
@@ -154,6 +158,9 @@
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\Collidable.h" />
     <ClInclude Include="src\Wall.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

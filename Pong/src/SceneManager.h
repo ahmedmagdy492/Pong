@@ -7,7 +7,6 @@ private:
 	Scene* currentScene;
 
 public:
-	SceneManager(Scene* currentScene);
 	void Render();
 	void SetCurrentScene(Scene* newScene);
 };
