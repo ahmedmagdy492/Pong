@@ -5,8 +5,8 @@
 #include "Scenes/GameScene.h"
 
 int main(void) {
-	const int screenWidth = 1600;
-	const int screenHeight = 900;
+	const int screenWidth = WIDTH;
+	const int screenHeight = HEIGHT;
 
 	InitWindow(screenWidth, screenHeight, "Pong");
 

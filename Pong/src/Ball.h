@@ -1,5 +1,6 @@
 #pragma once
 #include "Collidable.h"
+#include "./Helpers/Constants.h"
 
 class Ball : public Collidable
 {

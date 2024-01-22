@@ -12,9 +12,9 @@ protected:
 public:
 	Collidable();
 
-	const Vector2& GetLocation() const;
+	virtual const Vector2& GetLocation() const;
 
-	void SetLocation(Vector2& newLocation);
+	virtual void SetLocation(Vector2& newLocation);
 
 	const Vector2& GetDim() const;
 

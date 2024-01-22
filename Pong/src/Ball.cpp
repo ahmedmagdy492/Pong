@@ -2,12 +2,12 @@
 
 Ball::Ball() {
 	location = { 0 };
-	dim = { 25, 25 };
+	dim = { BALL_WIDTH, BALL_HEGHIT };
 }
 
 Ball::Ball(float x, float y) {
 	location = { x, y };
-	dim = { 25, 25 };
+	dim = { BALL_WIDTH, BALL_HEGHIT };
 }
 
 void Ball::Draw() {

@@ -2,19 +2,46 @@
 
 Player::Player() {
 	speed = { 0 };
-	location = {0};
-	dim = { 20, 100 };
+	dim = { PLAYER_WIDTH, PLAYER_HEIGHT };
+
+	int i = 0;
+
+	for (; i < PARTS_LEN; ++i) {
+		parts[i] = new Wall(location.x, location.y+(i*(dim.y/3)), dim.x, dim.y / 3);
+	}
 }
 
-Player::Player(float x, float y) {
-	speed = {0};
+Player::Player(float x, float y) : Player() {
 	location.x = x;
 	location.y = y;
-	dim = { 20, 100 };
+}
+
+Player::~Player() {
+	int i = 0;
+	for (; i < PARTS_LEN; ++i) {
+		delete parts[i];
+	}
+}
+
+void Player::SetLocation(Vector2& newLocation) {
+	int i = 0;
+
+	for (; i < PARTS_LEN; ++i) {
+		Vector2 tempLocation = { newLocation.x, newLocation.y+((dim.y/3)*i)};
+		parts[i]->SetLocation(tempLocation);
+	}
+}
+
+const Vector2& Player::GetLocation() const {
+	return parts[0]->GetLocation();
 }
 
 void Player::Draw() {
-	DrawRectangle(location.x, location.y, dim.x, dim.y, GRAY);
+	int i = 0;
+
+	for (; i < PARTS_LEN; ++i) {
+		parts[i]->Draw();
+	}
 }
 
 void Player::SetBoundary(int boundaryX, int boundaryY) {
@@ -23,11 +50,26 @@ void Player::SetBoundary(int boundaryX, int boundaryY) {
 }
 
 void Player::Move() {
-	if ((location.x + speed.x) > 0 && ((location.x + dim.x) + speed.x) < ((boundaryX-dim.x)/2)) {
-		location.x += speed.x;
+	Vector2 curLocation = parts[0]->GetLocation();
+
+	if (direction == Direction::LEFT) {
+		if ((curLocation.x + speed.x) > 0 && ((curLocation.x + dim.x) + speed.x) < ((boundaryX - dim.x) / 2)) {
+			Vector2 newLocation = { curLocation.x + speed.x, curLocation.y };
+			SetLocation(newLocation);
+		}
 	}
-	if ((location.y + speed.y) > 0 && ((location.y + dim.y) + speed.y) < boundaryY) {
-		location.y += speed.y;
+	else {
+		if ((curLocation.x + speed.x) > (boundaryX/2/2) && ((curLocation.x + dim.x) + speed.x) < ((boundaryX - dim.x) / 2)) {
+			Vector2 newLocation = { curLocation.x + speed.x, curLocation.y };
+			SetLocation(newLocation);
+		}
+	}
+
+	curLocation = parts[0]->GetLocation();
+
+	if ((curLocation.y + speed.y) > WALL_HEIGHT && ((curLocation.y + dim.y) + speed.y) < boundaryY) {
+		Vector2 newLocation = { curLocation.x, curLocation.y + speed.y };
+		SetLocation(newLocation);
 	}
 }
 
@@ -43,4 +85,24 @@ const Vector2& Player::GetSpeed() const {
 int Player::GetConstantSpeed()
 {
 	return SPEED;
+}
+
+const Collidable** Player::GetParts() const {
+	return (const Collidable**)parts;
+}
+
+void Player::IncreamentScore() {
+	++score;
+}
+
+unsigned int Player::GetScore() const {
+	return score;
+}
+
+Direction Player::GetPlayerDirection() const {
+	return direction;
+}
+
+void Player::SetPlayerDirection(Direction direction) {
+	this->direction = direction;
 }

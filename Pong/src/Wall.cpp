@@ -1,7 +1,6 @@
 #include "Wall.h"
 
-Wall::Wall() {
-
+Wall::Wall() : Wall(0, 0, 0, 0) {
 }
 
 Wall::Wall(float x, float y, float w, float h) {

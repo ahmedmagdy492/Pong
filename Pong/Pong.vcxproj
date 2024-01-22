@@ -133,6 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Helpers\Utils.h" />
+    <ClCompile Include="src\UI\Label.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Scenes\Scene.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
@@ -143,6 +145,8 @@
     <ClCompile Include="src\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\UI\Label.h" />
+    <ClInclude Include="src\Helpers\Constants.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\Scenes\Scene.h" />
     <ClInclude Include="src\SceneManager.h" />
