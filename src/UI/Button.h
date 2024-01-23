@@ -4,6 +4,8 @@
 
 #include <raylib.h>
 
+#include "../Helpers/Constants.h"
+
 class Button
 {
 private:
@@ -17,6 +19,7 @@ private:
 
 public:
 	Button();
+	~Button();
 
 	Vector2 MeasureTextDimensions() const;
 

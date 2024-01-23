@@ -4,6 +4,8 @@
 
 #include <raylib.h>
 
+#include "../Helpers/Constants.h"
+
 class Label
 {
 private:
@@ -15,6 +17,7 @@ private:
 
 public:
 	Label();
+	~Label();
 
 	void SetLocation(const Vector2& newLocation);
 	const Vector2& GetLocation() const;

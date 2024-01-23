@@ -3,8 +3,12 @@
 Label::Label() {
 	location = { 0 };
 	color = WHITE;
-	font = GetFontDefault();
 	fontSize = 30;
+	font = LoadFontEx(FONT_PATH, fontSize, 0, 250);
+}
+
+Label::~Label() {
+	UnloadFont(font);
 }
 
 void Label::SetLocation(const Vector2& newLocation) {

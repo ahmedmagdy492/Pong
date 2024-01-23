@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "./Helpers/constants.h"
 #include "Scenes/MainMenuScene.h"
+#include "Scenes/GameScene.h"
 
 
 int main(void) {
@@ -13,9 +14,15 @@ int main(void) {
 
 	SetTargetFPS(60);
 
+	HideCursor();
+
 	SceneManager sceneManager;
-	MainMenuScene mainMenuScene(&sceneManager, screenWidth, screenHeight);
-	sceneManager.SetCurrentScene(&mainMenuScene);
+	MainMenuScene* mainMenuScene = new MainMenuScene(&sceneManager, screenWidth, screenHeight);
+	sceneManager.AddScene(mainMenuScene);
+	GameScene* gameScene = new GameScene(&sceneManager, screenWidth, screenHeight);
+	sceneManager.AddScene(gameScene);
+	
+	sceneManager.SetSceneByName(MainMenu);
 
 	SetExitKey(0);
 
@@ -28,6 +35,9 @@ int main(void) {
 
 		EndDrawing();
 	}
+
+	delete mainMenuScene;
+	delete gameScene;
 
 	CloseWindow();
 }

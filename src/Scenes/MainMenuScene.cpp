@@ -2,12 +2,12 @@
 
 MainMenuScene::MainMenuScene(SceneManager* sceneManager, const int screenWidth, const int screenHeight) {
 
-	gameScene = NULL;
-
 	this->sceneManager = sceneManager;
 
+	sceneName = MainMenu;
+
 	btnStart.SetText("Start Game");
-	btnExit.SetText("Exit");
+	btnExit.SetText("Exit Game");
 
 	btnStart.SetIsActive(true);
 
@@ -24,7 +24,7 @@ MainMenuScene::MainMenuScene(SceneManager* sceneManager, const int screenWidth, 
 	Vector2 btnExitTextDims = btnExit.MeasureTextDimensions();
 	Vector2 btnExitLocation = {
 		(screenWidth - btnExitTextDims.x) / 2,
-		btnStartLocation.y + btnStartDim.y + btnExit.GetPadding().y
+		btnStartLocation.y + btnStartDim.y + btnExit.GetPadding().y*2
 	};
 	btnExit.SetLocation(btnExitLocation);
 	Vector2 btnExitDim = { btnExitTextDims.x, btnExitTextDims.y };
@@ -38,11 +38,6 @@ MainMenuScene::MainMenuScene(SceneManager* sceneManager, const int screenWidth, 
 	bannerLabel.SetLocation(newBannerLocation);
 }
 
-MainMenuScene::~MainMenuScene() {
-	if (gameScene != NULL) {
-		delete gameScene;
-	}
-}
 
 void MainMenuScene::Render() {
 	bannerLabel.Draw();
@@ -72,8 +67,7 @@ void MainMenuScene::Render() {
 
 	if (IsKeyPressed(KEY_ENTER)) {
 		if (btnStart.IsActive()) {
-			gameScene = new GameScene(WIDTH, HEIGHT);
-			sceneManager->SetCurrentScene(gameScene);
+			sceneManager->SetSceneByName(Game);
 		}
 		else if(btnExit.IsActive()) {
 			exit(0);

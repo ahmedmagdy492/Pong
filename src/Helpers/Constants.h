@@ -15,3 +15,5 @@
 
 #define SCORE1_Y (WALL_HEIGHT + 20)
 #define SCORE2_Y (WALL_HEIGHT + 20)
+
+#define FONT_PATH "resources/CourierPrime-Bold.ttf"

@@ -3,10 +3,14 @@
 Button::Button() {
 	location = { 0 };
 	dim = { 0 };
-	font = GetFontDefault();
 	fontSize = 35;
+	font = LoadFontEx(FONT_PATH, fontSize, 0, 250);
 	isActive = false;
 	padding = { 20, 20 };
+}
+
+Button::~Button() {
+	UnloadFont(font);
 }
 
 Vector2 Button::MeasureTextDimensions() const {
@@ -61,9 +65,15 @@ void Button::Draw() {
 	Vector2 newLocation = { location.x + (dim.x-textDim.x)/2, location.y + (dim.y-fontSize)/2 };
 
 	if (isActive) {
-		DrawTextEx(font, text.c_str(), newLocation, fontSize, 0, GREEN);
+		Rectangle rect;
+		rect.x = location.x-padding.x;
+		rect.y = location.y-padding.y;
+		rect.width = dim.x+padding.x+20;
+		rect.height = dim.y+padding.y+10;
+		DrawRectangleRoundedLines(rect, 10, 80, 2, GRAY);
+		DrawTextEx(font, text.c_str(), newLocation, fontSize, 0, GRAY);
 	}
 	else {
-		DrawTextEx(font, text.c_str(), newLocation, fontSize, 0, WHITE);
+		DrawTextEx(font, text.c_str(), newLocation, fontSize, 0, GRAY);
 	}
 }

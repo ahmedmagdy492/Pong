@@ -1,10 +1,11 @@
 #include "GameScene.h"
 
-GameScene::GameScene(const int screenWidth, const int screenHeight) {
+GameScene::GameScene(SceneManager* sceneManager, const int screenWidth, const int screenHeight) {
 	this->screenWidth = screenWidth;
 	this->screenHeight = screenHeight;
+	this->sceneManager = sceneManager;
 
-	HideCursor();
+	sceneName = Game;
 
 	Vector2 wall1Location = { 0, 0 };
 	wall1.SetLocation(wall1Location);
@@ -19,6 +20,8 @@ GameScene::GameScene(const int screenWidth, const int screenHeight) {
 	p1.SetPlayerDirection(Direction::LEFT);
 	p2.SetPlayerDirection(Direction::RIGHT);
 
+	player1ScoreLabel.SetFontSize(40);
+	player2ScoreLabel.SetFontSize(40);
 	player1ScoreLabel.SetText(ConvertUIntToString(p1.GetScore()));
 	player2ScoreLabel.SetText(ConvertUIntToString(p2.GetScore()));
 
@@ -52,6 +55,7 @@ void GameScene::ResetScene() {
 }
 
 void GameScene::Render() {
+	DrawLine((screenWidth-20)/2, 0, (screenWidth - 20) / 2, screenHeight, GRAY);
 	wall1.Draw();
 	wall2.Draw();
 	ball.Draw();
@@ -59,8 +63,13 @@ void GameScene::Render() {
 	p2.Draw();
 	player1ScoreLabel.Draw();
 	player2ScoreLabel.Draw();
+
 	Vector2 p1Speed = p1.GetSpeed();
 	Player* curActivePlayer = &p1;
+
+	if (IsKeyDown(KEY_ESCAPE)) {
+		sceneManager->SetSceneByName(MainMenu);
+	}
 
 	if (IsKeyDown(KEY_UP)) {
 		Vector2 newSpeed = {0, p1.GetConstantSpeed()*-1};
