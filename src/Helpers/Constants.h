@@ -7,7 +7,7 @@
 
 #define BALL_WIDTH 25
 #define BALL_HEGHIT 25
-#define BALL_SPEED 8
+#define BALL_SPEED 10
 
 #define PLAYER_WIDTH 20
 #define PLAYER_HEIGHT 90

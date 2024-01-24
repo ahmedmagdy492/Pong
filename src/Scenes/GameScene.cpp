@@ -136,7 +136,7 @@ void GameScene::Render() {
 			ball.ToggleMoving();
 		}
 		Vector2 oldSpeed = ball.GetSpeed();
-		Vector2 newSpeed = { abs(BALL_SPEED), oldSpeed.y*0 };
+		Vector2 newSpeed = { abs(BALL_SPEED), oldSpeed.y*-1 };
 
 		ball.SetSpeed(newSpeed);
 	}
@@ -171,7 +171,7 @@ void GameScene::Render() {
 			ball.ToggleMoving();
 		}
 		Vector2 oldSpeed = ball.GetSpeed();
-		Vector2 newSpeed = { BALL_SPEED*-1, oldSpeed.y * 0 };
+		Vector2 newSpeed = { BALL_SPEED*-1, oldSpeed.y * -1 };
 
 		ball.SetSpeed(newSpeed);
 	}
